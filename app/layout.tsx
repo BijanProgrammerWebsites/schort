@@ -1,6 +1,6 @@
 import { ReactElement, ReactNode } from "react";
 
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geologica } from "next/font/google";
 
 import HeaderComponent from "@/app/components/header/header.component";
@@ -23,7 +23,6 @@ export const metadata: Metadata = {
   title: metadataTitle,
   description: metadataDescription,
   robots: "index, follow",
-  viewport: "width=device-width, initial-scale=1.0",
   openGraph: {
     title: metadataTitle,
     description: metadataDescription,
@@ -36,6 +35,11 @@ export const metadata: Metadata = {
     description: metadataDescription,
     card: "summary_large_image",
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({

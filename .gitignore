@@ -40,3 +40,5 @@ next-env.d.ts
 ignore/
 
 .env
+
+app/generated/

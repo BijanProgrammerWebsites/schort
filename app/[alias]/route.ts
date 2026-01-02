@@ -6,9 +6,10 @@ const prisma = PrismaService.client;
 
 export async function GET(
   request: Request,
-  { params }: { params: { alias: string } },
+  { params }: RouteContext<"/[alias]">,
 ): Promise<Response> {
-  const link = await prisma.link.findUnique({ where: { alias: params.alias } });
+  const { alias } = await params;
+  const link = await prisma.link.findUnique({ where: { alias } });
 
   if (!link) {
     redirect("/");
