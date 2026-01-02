@@ -16,4 +16,5 @@ jobs:
     uses: BijanProgrammerWebsites/hub/.github/workflows/deploy-nextjs.yml@master
     with:
       process-name: schort
+      port: 3002
     secrets: inherit
