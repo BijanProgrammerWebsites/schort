@@ -1,49 +1,49 @@
 @use "@/app/utils";
 
 .generator-list-component {
-    display: grid;
-    gap: 2rem;
+  display: grid;
+  gap: 2rem;
 
-    > div {
-        background-color: var(--color-gray-16);
+  > div {
+    background-color: var(--color-gray-16);
 
-        > li {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr);
-            gap: 1rem;
+    > li {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1rem;
 
-            padding: 2rem;
+      padding: 2rem;
 
-            border-radius: var(--border-radius);
+      border-radius: var(--border-radius);
 
-            form {
-                display: flex;
-                flex-wrap: wrap;
-                align-items: center;
-                gap: 1rem;
+      form {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1rem;
 
-                @include utils.font-size-clamp(14, 18);
+        @include utils.font-size-clamp(14, 18);
 
-                .field {
-                    flex: 1 1 0;
+        .field {
+          flex: 1 1 0;
 
-                    --form-element-padding: 0.5em;
-                }
-
-                .buttons {
-                    display: flex;
-                    align-items: center;
-                    gap: 1rem;
-
-                    button {
-                        padding: 0.5em;
-                    }
-                }
-            }
-
-            .original {
-                @include utils.font-size-clamp(14, 18);
-            }
+          --form-element-padding: 0.5em;
         }
+
+        .buttons {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+
+          button {
+            padding: 0.5em;
+          }
+        }
+      }
+
+      .original {
+        @include utils.font-size-clamp(14, 18);
+      }
     }
+  }
 }

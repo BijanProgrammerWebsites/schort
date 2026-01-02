@@ -1,64 +1,67 @@
 @use "@/app/utils";
 
 :root {
-    --color-gray-98: hsl(0deg 0% 98%);
-    --color-gray-95: hsl(0deg 0% 95%);
-    --color-gray-90: hsl(0deg 0% 90%);
-    --color-gray-80: hsl(0deg 0% 80%);
-    --color-gray-70: hsl(0deg 0% 70%);
-    --color-gray-40: hsl(0deg 0% 40%);
-    --color-gray-36: hsl(0deg 0% 36%);
-    --color-gray-30: hsl(0deg 0% 30%);
-    --color-gray-20: hsl(0deg 0% 20%);
-    --color-gray-16: hsl(0deg 0% 16%);
-    --color-gray-14: hsl(0deg 0% 14%);
-    --color-gray-12: hsl(0deg 0% 12%);
-    --color-gray-10: hsl(0deg 0% 10%);
-    --color-gray-8: hsl(0deg 0% 8%);
+  --color-gray-98: hsl(0deg 0% 98%);
+  --color-gray-95: hsl(0deg 0% 95%);
+  --color-gray-90: hsl(0deg 0% 90%);
+  --color-gray-80: hsl(0deg 0% 80%);
+  --color-gray-70: hsl(0deg 0% 70%);
+  --color-gray-40: hsl(0deg 0% 40%);
+  --color-gray-36: hsl(0deg 0% 36%);
+  --color-gray-30: hsl(0deg 0% 30%);
+  --color-gray-20: hsl(0deg 0% 20%);
+  --color-gray-16: hsl(0deg 0% 16%);
+  --color-gray-14: hsl(0deg 0% 14%);
+  --color-gray-12: hsl(0deg 0% 12%);
+  --color-gray-10: hsl(0deg 0% 10%);
+  --color-gray-8: hsl(0deg 0% 8%);
 
-    --color-primary: hsl(36deg 100% 50%);
-    --color-primary-opposite: var(--color-gray-10);
-    --color-primary-lighter: hsl(36deg 100% 58%);
+  --color-primary: hsl(36deg 100% 50%);
+  --color-primary-opposite: var(--color-gray-10);
+  --color-primary-lighter: hsl(36deg 100% 58%);
 
-    --color-success: hsl(140deg 60% 50%);
-    --color-success-opposite: var(--color-gray-10);
-    --color-success-lighter: hsl(140deg 60% 58%);
+  --color-success: hsl(140deg 60% 50%);
+  --color-success-opposite: var(--color-gray-10);
+  --color-success-lighter: hsl(140deg 60% 58%);
 
-    --color-danger: hsl(350deg 100% 60%);
-    --color-danger-opposite: var(--color-gray-10);
-    --color-danger-lighter: hsl(350deg 100% 68%);
+  --color-danger: hsl(350deg 100% 60%);
+  --color-danger-opposite: var(--color-gray-10);
+  --color-danger-lighter: hsl(350deg 100% 68%);
 
-    --color-border-fade: hsl(0deg 0% 90% / 20%);
+  --color-border-fade: hsl(0deg 0% 90% / 20%);
 
-    --color-box-shadow-subtle: hsl(0deg 0% 20% / 8%);
-    --box-shadow-subtle: 0 0.3rem 0.7rem 0 var(--color-box-shadow-subtle);
+  --color-box-shadow-subtle: hsl(0deg 0% 20% / 8%);
+  --box-shadow-subtle: 0 0.3rem 0.7rem 0 var(--color-box-shadow-subtle);
 
-    --form-element-padding-block: 1em;
-    --form-element-padding-inline: 1em;
-    --form-element-padding: var(--form-element-padding-block) var(--form-element-padding-inline);
+  --form-element-padding-block: 1em;
+  --form-element-padding-inline: 1em;
+  --form-element-padding: var(--form-element-padding-block)
+    var(--form-element-padding-inline);
 
-    --border-radius: 0.4rem;
+  --border-radius: 0.4rem;
 
-    --outline-focus-visible: 0.2rem dashed var(--color-gray-90);
+  --outline-focus-visible: 0.2rem dashed var(--color-gray-90);
 
-    --page-max-inline-size: 120rem;
-    --page-padding-inline: calc(max(100% - var(--page-max-inline-size), 4rem) / 2);
+  --page-max-inline-size: 120rem;
+  --page-padding-inline: calc(
+    max(100% - var(--page-max-inline-size), 4rem) / 2
+  );
 }
 
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 html {
-    color-scheme: dark;
+  color-scheme: dark;
 
-    font-family: Poppins, sans-serif;
-    font-size: 62.5%;
+  font-family: Poppins, sans-serif;
+  font-size: 62.5%;
 }
 
 input,
@@ -72,83 +75,84 @@ datalist,
 output,
 option,
 optgroup {
-    font-family: inherit;
-    font-size: inherit;
+  font-family: inherit;
+  font-size: inherit;
 }
 
 body {
-    background-color: var(--color-gray-10);
-    color: var(--color-gray-90);
+  background-color: var(--color-gray-10);
+  color: var(--color-gray-90);
 
-    position: relative;
-    overflow-x: hidden;
+  position: relative;
+  overflow-x: hidden;
 
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    gap: 2rem;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 2rem;
 
-    min-block-size: 100vb;
-    min-block-size: 100dvb;
+  min-block-size: 100vb;
+  min-block-size: 100dvb;
 
-    @include utils.font-size-clamp(14, 16);
+  @include utils.font-size-clamp(14, 16);
 
-    &::before {
-        --dominant: var(--color-gray-10);
-        --recessive: var(--color-gray-12);
-        --size: 3rem;
-        --thickness: 0.1rem;
-        --inner-circle-radius: 1.2rem;
-        --outer-circle-radius: 2.6rem;
+  &::before {
+    --dominant: var(--color-gray-10);
+    --recessive: var(--color-gray-12);
+    --size: 3rem;
+    --thickness: 0.1rem;
+    --inner-circle-radius: 1.2rem;
+    --outer-circle-radius: 2.6rem;
 
-        content: "";
+    content: "";
 
-        position: absolute;
-        inset: 0;
-        z-index: -1;
+    position: absolute;
+    inset: 0;
+    z-index: -1;
 
-        background: radial-gradient(
-                circle,
-                transparent var(--inner-circle-radius),
-                var(--dominant) var(--inner-circle-radius),
-                var(--dominant) var(--outer-circle-radius),
-                transparent var(--outer-circle-radius),
-                transparent
-            ),
-            linear-gradient(
-                45deg,
-                transparent,
-                transparent calc(50% - var(--thickness)),
-                var(--recessive) calc(50% - var(--thickness)),
-                var(--recessive) calc(50% + var(--thickness)),
-                transparent calc(50% + var(--thickness))
-            ),
-            linear-gradient(
-                -45deg,
-                transparent,
-                transparent calc(50% - var(--thickness)),
-                var(--recessive) calc(50% - var(--thickness)),
-                var(--recessive) calc(50% + var(--thickness)),
-                transparent calc(50% + var(--thickness))
-            );
-        background-size:
-            calc(2 * var(--size)) calc(2 * var(--size)),
-            var(--size) var(--size),
-            var(--size) var(--size);
-    }
+    background:
+      radial-gradient(
+        circle,
+        transparent var(--inner-circle-radius),
+        var(--dominant) var(--inner-circle-radius),
+        var(--dominant) var(--outer-circle-radius),
+        transparent var(--outer-circle-radius),
+        transparent
+      ),
+      linear-gradient(
+        45deg,
+        transparent,
+        transparent calc(50% - var(--thickness)),
+        var(--recessive) calc(50% - var(--thickness)),
+        var(--recessive) calc(50% + var(--thickness)),
+        transparent calc(50% + var(--thickness))
+      ),
+      linear-gradient(
+        -45deg,
+        transparent,
+        transparent calc(50% - var(--thickness)),
+        var(--recessive) calc(50% - var(--thickness)),
+        var(--recessive) calc(50% + var(--thickness)),
+        transparent calc(50% + var(--thickness))
+      );
+    background-size:
+      calc(2 * var(--size)) calc(2 * var(--size)),
+      var(--size) var(--size),
+      var(--size) var(--size);
+  }
 }
 
 p {
-    line-height: 1.4;
+  line-height: 1.4;
 }
 
 ul {
-    list-style: none;
+  list-style: none;
 }
 
 svg {
-    vertical-align: middle;
+  vertical-align: middle;
 }
 
 .page-bleed {
-    padding-inline: var(--page-padding-inline);
+  padding-inline: var(--page-padding-inline);
 }

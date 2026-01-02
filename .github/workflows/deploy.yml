@@ -1,19 +1,19 @@
 name: Deploy
 on:
-    push:
-        branches: [master]
-    workflow_dispatch:
+  push:
+    branches: [master]
+  workflow_dispatch:
 
 jobs:
-    migrate:
-        uses: BijanProgrammerWebsites/hub/.github/workflows/migrate-prisma.yml@master
-        with:
-            process-name: schort
-        secrets: inherit
+  migrate:
+    uses: BijanProgrammerWebsites/hub/.github/workflows/migrate-prisma.yml@master
+    with:
+      process-name: schort
+    secrets: inherit
 
-    deploy:
-        needs: migrate
-        uses: BijanProgrammerWebsites/hub/.github/workflows/deploy-nextjs.yml@master
-        with:
-            process-name: schort
-        secrets: inherit
+  deploy:
+    needs: migrate
+    uses: BijanProgrammerWebsites/hub/.github/workflows/deploy-nextjs.yml@master
+    with:
+      process-name: schort
+    secrets: inherit

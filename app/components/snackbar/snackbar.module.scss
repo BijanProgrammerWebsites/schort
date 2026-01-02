@@ -1,33 +1,33 @@
 .snackbar-component {
-    background-color: var(--backgronud-color-idle);
-    color: var(--foreground-color-idle);
+  background-color: var(--backgronud-color-idle);
+  color: var(--foreground-color-idle);
 
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 
-    padding: 1rem;
+  padding: 1rem;
 
-    border-radius: var(--border-radius);
+  border-radius: var(--border-radius);
 
-    font-size: 1.8rem;
+  font-size: 1.8rem;
 
-    .icon {
-        font-size: 1.2em;
-    }
+  .icon {
+    font-size: 1.2em;
+  }
 
-    &.basic {
-        --backgronud-color-idle: var(--color-gray-90);
-        --foreground-color-idle: var(--color-gray-10);
-    }
+  &.basic {
+    --backgronud-color-idle: var(--color-gray-90);
+    --foreground-color-idle: var(--color-gray-10);
+  }
 
-    &.success {
-        --backgronud-color-idle: var(--color-success);
-        --foreground-color-idle: var(--color-success-opposite);
-    }
+  &.success {
+    --backgronud-color-idle: var(--color-success);
+    --foreground-color-idle: var(--color-success-opposite);
+  }
 
-    &.danger {
-        --backgronud-color-idle: var(--color-danger);
-        --foreground-color-idle: var(--color-danger-opposite);
-    }
+  &.danger {
+    --backgronud-color-idle: var(--color-danger);
+    --foreground-color-idle: var(--color-danger-opposite);
+  }
 }

@@ -8,9 +8,9 @@ This app lets you shorten any url. It has authentication functionality, so you c
 
 Shortening your URL has many benefits, such as:
 
--   It makes it easier to share and publish on social media and messenger services.
--   It makes your content more readable and organized.
--   It makes it easier to memorize the URL.
+- It makes it easier to share and publish on social media and messenger services.
+- It makes your content more readable and organized.
+- It makes it easier to memorize the URL.
 
 But it has some pitfalls as well. For example, we don't recommend to shorten links that are meant to be used by machines for two reasons:
 

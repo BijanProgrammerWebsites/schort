@@ -1,27 +1,27 @@
 @use "@/app/utils";
 
 .generator-guide-component {
-    background-color: var(--color-gray-16);
+  background-color: var(--color-gray-16);
 
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 4rem;
+
+  block-size: 100%;
+
+  padding: 2rem;
+
+  border-radius: var(--border-radius);
+
+  main {
     display: grid;
-    grid-template-rows: auto 1fr;
-    gap: 4rem;
+    align-content: start;
+    gap: 2rem;
 
-    block-size: 100%;
+    p {
+      color: var(--color-gray-70);
 
-    padding: 2rem;
-
-    border-radius: var(--border-radius);
-
-    main {
-        display: grid;
-        align-content: start;
-        gap: 2rem;
-
-        p {
-            color: var(--color-gray-70);
-
-            @include utils.font-size-clamp(14, 18);
-        }
+      @include utils.font-size-clamp(14, 18);
     }
+  }
 }

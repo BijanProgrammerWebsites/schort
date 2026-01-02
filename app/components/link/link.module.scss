@@ -1,59 +1,60 @@
 @use "@/app/utils";
 
 .link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
 
-    max-inline-size: 100%;
+  max-inline-size: 100%;
 
-    .children {
-        flex: 1 1 0;
+  .children {
+    flex: 1 1 0;
 
-        overflow: hidden;
+    overflow: hidden;
 
-        text-overflow: ellipsis;
-        white-space: nowrap;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &:focus-visible {
+    outline: var(--outline-focus-visible);
+  }
+
+  &.basic {
+    color: var(--color-primary);
+  }
+
+  &.button {
+    --form-element-padding-block: 0.5em;
+    --form-element-padding-inline: 0.5em;
+    --form-element-padding: var(--form-element-padding-block)
+      var(--form-element-padding-inline);
+
+    background-color: var(--color-primary);
+    color: var(--color-primary-opposite);
+
+    padding: var(--form-element-padding);
+
+    border-radius: var(--border-radius);
+
+    @include utils.font-size-clamp(12, 16);
+    font-weight: 700;
+
+    text-decoration: none;
+
+    &:hover {
+      background-color: var(--color-primary-lighter);
     }
+  }
 
-    &:focus-visible {
-        outline: var(--outline-focus-visible);
-    }
+  &.ghost {
+    color: inherit;
 
-    &.basic {
-        color: var(--color-primary);
-    }
+    text-decoration: none;
+  }
 
-    &.button {
-        --form-element-padding-block: 0.5em;
-        --form-element-padding-inline: 0.5em;
-        --form-element-padding: var(--form-element-padding-block) var(--form-element-padding-inline);
-
-        background-color: var(--color-primary);
-        color: var(--color-primary-opposite);
-
-        padding: var(--form-element-padding);
-
-        border-radius: var(--border-radius);
-
-        @include utils.font-size-clamp(12, 16);
-        font-weight: 700;
-
-        text-decoration: none;
-
-        &:hover {
-            background-color: var(--color-primary-lighter);
-        }
-    }
-
-    &.ghost {
-        color: inherit;
-
-        text-decoration: none;
-    }
-
-    &.size--large {
-        @include utils.font-size-clamp(14, 18);
-        font-weight: 700;
-    }
+  &.size--large {
+    @include utils.font-size-clamp(14, 18);
+    font-weight: 700;
+  }
 }

@@ -1,154 +1,154 @@
 @use "@/app/utils";
 
 .hero-component {
+  display: grid;
+  grid-template-areas: "text" "suggestion";
+  align-items: center;
+  justify-items: center;
+  gap: 2rem;
+
+  padding-block: 2rem;
+
+  text-align: center;
+
+  .text {
+    grid-area: text;
+
     display: grid;
-    grid-template-areas: "text" "suggestion";
-    align-items: center;
     justify-items: center;
-    gap: 2rem;
 
-    padding-block: 2rem;
+    h1 {
+      display: grid;
+      gap: 1rem;
 
-    text-align: center;
+      margin-block-end: 2rem;
 
-    .text {
-        grid-area: text;
+      line-height: 1;
 
-        display: grid;
-        justify-items: center;
+      .subtitle {
+        @include utils.font-size-clamp(24, 36);
+        font-weight: 400;
+      }
 
-        h1 {
-            display: grid;
-            gap: 1rem;
+      .title {
+        color: var(--color-gray-98);
 
-            margin-block-end: 2rem;
+        @include utils.font-size-clamp(36, 84);
+        font-weight: 700;
 
-            line-height: 1;
+        letter-spacing: 0.25rem;
 
-            .subtitle {
-                @include utils.font-size-clamp(24, 36);
-                font-weight: 400;
-            }
+        text-transform: uppercase;
 
-            .title {
-                color: var(--color-gray-98);
+        .size-matters {
+          color: var(--color-primary);
 
-                @include utils.font-size-clamp(36, 84);
-                font-weight: 700;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          column-gap: 2rem;
 
-                letter-spacing: 0.25rem;
-
-                text-transform: uppercase;
-
-                .size-matters {
-                    color: var(--color-primary);
-
-                    display: flex;
-                    flex-wrap: wrap;
-                    justify-content: center;
-                    column-gap: 2rem;
-
-                    line-height: 0.9;
-                }
-            }
+          line-height: 0.9;
         }
-
-        .description {
-            color: var(--color-gray-70);
-
-            max-inline-size: 40ch;
-
-            margin-block-end: 6rem;
-
-            @include utils.font-size-clamp(16, 20);
-        }
+      }
     }
 
-    .suggestion {
-        grid-area: suggestion;
+    .description {
+      color: var(--color-gray-70);
 
-        color: var(--color-gray-70);
+      max-inline-size: 40ch;
 
-        max-inline-size: 40ch;
+      margin-block-end: 6rem;
 
-        margin-block-end: 4rem;
-
-        @include utils.font-size-clamp(14, 18);
-
-        strong {
-            color: var(--color-primary);
-
-            display: block;
-
-            @include utils.font-size-clamp(18, 24);
-            font-weight: 700;
-
-            text-transform: uppercase;
-        }
+      @include utils.font-size-clamp(16, 20);
     }
+  }
 
-    .image {
-        grid-area: image;
+  .suggestion {
+    grid-area: suggestion;
 
-        display: none;
+    color: var(--color-gray-70);
+
+    max-inline-size: 40ch;
+
+    margin-block-end: 4rem;
+
+    @include utils.font-size-clamp(14, 18);
+
+    strong {
+      color: var(--color-primary);
+
+      display: block;
+
+      @include utils.font-size-clamp(18, 24);
+      font-weight: 700;
+
+      text-transform: uppercase;
     }
+  }
+
+  .image {
+    grid-area: image;
+
+    display: none;
+  }
 }
 
 @media (min-width: 480px) {
-    .hero-component {
-        .suggestion {
-            strong {
-                display: initial;
-            }
-        }
+  .hero-component {
+    .suggestion {
+      strong {
+        display: initial;
+      }
     }
+  }
 }
 
 @media (min-width: 960px) {
-    .hero-component {
-        grid-template-areas: "text image" "suggestion image";
-        grid-template-columns: 1fr 1fr;
-        justify-items: start;
+  .hero-component {
+    grid-template-areas: "text image" "suggestion image";
+    grid-template-columns: 1fr 1fr;
+    justify-items: start;
 
-        padding-block: 6rem;
+    padding-block: 6rem;
 
-        text-align: start;
+    text-align: start;
 
-        .text {
-            justify-items: start;
+    .text {
+      justify-items: start;
 
-            h1 {
-                gap: 1rem;
+      h1 {
+        gap: 1rem;
 
-                .title {
-                    .size-matters {
-                        justify-content: start;
-                    }
-                }
-            }
-
-            .description {
-                margin-block-end: 8rem;
-            }
+        .title {
+          .size-matters {
+            justify-content: start;
+          }
         }
+      }
 
-        .image {
-            display: grid;
-
-            inline-size: 100%;
-
-            img {
-                justify-self: end;
-
-                inline-size: 80%;
-                block-size: auto;
-            }
-        }
+      .description {
+        margin-block-end: 8rem;
+      }
     }
+
+    .image {
+      display: grid;
+
+      inline-size: 100%;
+
+      img {
+        justify-self: end;
+
+        inline-size: 80%;
+        block-size: auto;
+      }
+    }
+  }
 }
 
 @media (min-width: 1200px) {
-    .hero-component {
-        padding-block: 12rem;
-    }
+  .hero-component {
+    padding-block: 12rem;
+  }
 }
