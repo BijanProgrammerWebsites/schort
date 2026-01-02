@@ -1,123 +1,129 @@
 @use "@/app/utils";
 
 .button {
-    --icon-size: 1.2em;
+  --icon-size: 1.2em;
 
-    background-color: var(--backgronud-color-idle);
-    color: var(--foreground-color-idle);
+  background-color: var(--backgronud-color-idle);
+  color: var(--foreground-color-idle);
 
-    position: relative;
+  position: relative;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 
-    border: none;
-    border-radius: var(--border-radius);
+  border: none;
+  border-radius: var(--border-radius);
 
-    padding: var(--form-element-padding);
+  padding: var(--form-element-padding);
 
-    transition-property: background-color, color;
-    transition-delay: var(--color-primary);
+  transition-property: background-color, color;
+  transition-delay: var(--color-primary);
 
-    cursor: pointer;
+  cursor: pointer;
 
-    .icon {
-        position: absolute;
-        inset-block-start: 50%;
-        inset-inline-start: var(--form-element-padding-inline);
+  .icon {
+    position: absolute;
+    inset-block-start: 50%;
+    inset-inline-start: var(--form-element-padding-inline);
 
-        translate: 0 -50%;
+    translate: 0 -50%;
 
-        svg {
-            font-size: var(--icon-size);
-        }
+    svg {
+      font-size: var(--icon-size);
     }
+  }
 
-    &:has(.icon) {
-        --gap: 0.5em;
+  &:has(.icon) {
+    --gap: 0.5em;
 
-        padding-inline: calc(var(--form-element-padding-inline) + var(--icon-size) + var(--gap));
-    }
+    padding-inline: calc(
+      var(--form-element-padding-inline) + var(--icon-size) + var(--gap)
+    );
+  }
 
-    &:not(:disabled):hover {
-        background-color: var(--backgronud-color-hover, var(--backgronud-color-idle));
-        color: var(--foreground-color-hover, var(--foreground-color-idle));
-    }
+  &:not(:disabled):hover {
+    background-color: var(
+      --backgronud-color-hover,
+      var(--backgronud-color-idle)
+    );
+    color: var(--foreground-color-hover, var(--foreground-color-idle));
+  }
 
-    &:focus-visible {
-        outline: var(--outline-focus-visible);
-    }
+  &:focus-visible {
+    outline: var(--outline-focus-visible);
+  }
 
-    &:disabled {
-        filter: grayscale(1);
+  &:disabled {
+    filter: grayscale(1);
 
-        cursor: not-allowed;
-    }
+    cursor: not-allowed;
+  }
 
-    &.basic {
-        --backgronud-color-idle: var(--color-gray-90);
-        --foreground-color-idle: var(--color-gray-10);
+  &.basic {
+    --backgronud-color-idle: var(--color-gray-90);
+    --foreground-color-idle: var(--color-gray-10);
 
-        --backgronud-color-hover: var(--color-gray-98);
-    }
+    --backgronud-color-hover: var(--color-gray-98);
+  }
 
-    &.primary {
-        --backgronud-color-idle: var(--color-primary);
-        --foreground-color-idle: var(--color-primary-opposite);
+  &.primary {
+    --backgronud-color-idle: var(--color-primary);
+    --foreground-color-idle: var(--color-primary-opposite);
 
-        --backgronud-color-hover: var(--color-primary-lighter);
-    }
+    --backgronud-color-hover: var(--color-primary-lighter);
+  }
 
-    &.success {
-        --backgronud-color-idle: var(--color-success);
-        --foreground-color-idle: var(--color-success-opposite);
+  &.success {
+    --backgronud-color-idle: var(--color-success);
+    --foreground-color-idle: var(--color-success-opposite);
 
-        --backgronud-color-hover: var(--color-success-lighter);
-    }
+    --backgronud-color-hover: var(--color-success-lighter);
+  }
 
-    &.danger {
-        --backgronud-color-idle: transparent;
-        --foreground-color-idle: var(--color-danger);
+  &.danger {
+    --backgronud-color-idle: transparent;
+    --foreground-color-idle: var(--color-danger);
 
-        --backgronud-color-hover: var(--color-danger-lighter);
+    --backgronud-color-hover: var(--color-danger-lighter);
 
-        border: 0.2rem solid currentcolor;
-    }
+    border: 0.2rem solid currentcolor;
+  }
 
-    &.ghost {
-        --backgronud-color-idle: trasnparent;
-        --foreground-color-idle: inherit;
-    }
+  &.ghost {
+    --backgronud-color-idle: trasnparent;
+    --foreground-color-idle: inherit;
+  }
 
-    &.link {
-        --backgronud-color-idle: transparent;
-        --foreground-color-idle: var(--color-primary);
+  &.link {
+    --backgronud-color-idle: transparent;
+    --foreground-color-idle: var(--color-primary);
 
-        --form-element-padding: 0;
+    --form-element-padding: 0;
 
-        display: inline;
+    display: inline;
 
-        text-decoration: underline;
-    }
+    text-decoration: underline;
+  }
 
-    &.size--inherit {
-        font-size: inherit;
-        font-weight: inherit;
-    }
+  &.size--inherit {
+    font-size: inherit;
+    font-weight: inherit;
+  }
 
-    &.size--normal {
-        --form-element-padding-block: 0.5em;
-        --form-element-padding-inline: 0.5em;
-        --form-element-padding: var(--form-element-padding-block) var(--form-element-padding-inline);
+  &.size--normal {
+    --form-element-padding-block: 0.5em;
+    --form-element-padding-inline: 0.5em;
+    --form-element-padding: var(--form-element-padding-block)
+      var(--form-element-padding-inline);
 
-        @include utils.font-size-clamp(12, 16);
-        font-weight: 700;
-    }
+    @include utils.font-size-clamp(12, 16);
+    font-weight: 700;
+  }
 
-    &.size--large {
-        @include utils.font-size-clamp(14, 18);
-        font-weight: 700;
-    }
+  &.size--large {
+    @include utils.font-size-clamp(14, 18);
+    font-weight: 700;
+  }
 }
