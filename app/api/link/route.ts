@@ -9,11 +9,10 @@ import crypto from "crypto";
 
 import { ErrorDto } from "@/app/dto/error.dto";
 
-import { PrismaService } from "@/app/services/prisma.service";
 import { RouteService } from "@/app/services/route.service";
 import { ValidationService } from "@/app/services/validation.service";
 
-const prisma = PrismaService.client;
+import { prisma } from "@/app/lib/prisma";
 
 export async function GET(): Promise<NextResponse<Link[] | ErrorDto>> {
   return RouteService.handleError(async (): Promise<Link[] | ErrorDto> => {

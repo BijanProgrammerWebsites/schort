@@ -4,11 +4,10 @@ import { User } from "@prisma/client";
 
 import { ErrorDto } from "@/app/dto/error.dto";
 
-import { PrismaService } from "@/app/services/prisma.service";
 import { RouteService } from "@/app/services/route.service";
 import { ValidationService } from "@/app/services/validation.service";
 
-const prisma = PrismaService.client;
+import { prisma } from "@/app/lib/prisma";
 
 export async function POST(request: Request): Promise<Response> {
   return RouteService.handleError(async (): Promise<User | ErrorDto> => {

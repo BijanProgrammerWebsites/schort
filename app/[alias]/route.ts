@@ -1,11 +1,9 @@
 import { redirect } from "next/navigation";
 
-import { PrismaService } from "@/app/services/prisma.service";
-
-const prisma = PrismaService.client;
+import { prisma } from "@/app/lib/prisma";
 
 export async function GET(
-  request: Request,
+  _: Request,
   { params }: RouteContext<"/[alias]">,
 ): Promise<Response> {
   const { alias } = await params;

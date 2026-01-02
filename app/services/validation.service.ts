@@ -1,8 +1,6 @@
 import { ErrorDto } from "@/app/dto/error.dto";
 import { Session, User } from "next-auth";
-import { PrismaService } from "@/app/services/prisma.service";
-
-const prisma = PrismaService.client;
+import { prisma } from "@/app/lib/prisma";
 
 export class ValidationService {
   public static throwIfNotLoggedIn(
