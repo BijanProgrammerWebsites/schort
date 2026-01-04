@@ -1,7 +1,5 @@
 import { FormEvent, ReactElement, useState } from "react";
 
-import { Link } from "@prisma/client";
-
 import ButtonComponent, {
   ButtonComponentVariant,
 } from "@/app/components/button/button.component";
@@ -16,6 +14,7 @@ import { useSnackbar } from "@/app/hooks/snackbar.hook";
 
 import formStyles from "@/app/styles/form.module.scss";
 import styles from "./generator-form.module.scss";
+import { Link } from "@/db/schema";
 
 export default function GeneratorFormComponents({
   addLinkToList,

@@ -8,8 +8,6 @@ import {
   useState,
 } from "react";
 
-import { Link } from "@prisma/client";
-
 import { AnimationContext } from "@/app/context/animation.context";
 import { AnimationStatusModel } from "@/app/models/animation-status.model";
 
@@ -31,6 +29,7 @@ import { useSnackbar } from "@/app/hooks/snackbar.hook";
 
 import formStyles from "@/app/styles/form.module.scss";
 import styles from "./generator-list.module.scss";
+import { Link } from "@/db/schema";
 
 export default function GeneratorListComponent({
   links,

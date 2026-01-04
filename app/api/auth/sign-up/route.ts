@@ -1,13 +1,11 @@
 import bcrypt from "bcryptjs";
 
-import { User } from "@prisma/client";
-
 import { ErrorDto } from "@/app/dto/error.dto";
 
 import { RouteService } from "@/app/services/route.service";
 import { ValidationService } from "@/app/services/validation.service";
-
-import { prisma } from "@/app/lib/prisma";
+import { db } from "@/db";
+import { User, users } from "@/db/schema";
 
 export async function POST(request: Request): Promise<Response> {
   return RouteService.handleError(async (): Promise<User | ErrorDto> => {
@@ -18,8 +16,16 @@ export async function POST(request: Request): Promise<Response> {
     ValidationService.throwIfInvalidPassword(password);
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    return prisma.user.create({
-      data: { email, name, password: hashedPassword },
-    });
+
+    const rows = await db
+      .insert(users)
+      .values({
+        email,
+        name,
+        password: hashedPassword,
+      })
+      .returning();
+
+    return rows[0];
   });
 }

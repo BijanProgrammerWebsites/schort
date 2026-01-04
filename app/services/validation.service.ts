@@ -1,6 +1,8 @@
 import { ErrorDto } from "@/app/dto/error.dto";
 import { Session, User } from "next-auth";
-import { prisma } from "@/app/lib/prisma";
+import { db } from "@/db";
+import { eq } from "drizzle-orm";
+import { links, users } from "@/db/schema";
 
 export class ValidationService {
   public static throwIfNotLoggedIn(
@@ -23,7 +25,10 @@ export class ValidationService {
   }
 
   public static async throwIfDuplicateEmail(value: string): Promise<void> {
-    const duplicate = await prisma.user.findFirst({ where: { email: value } });
+    const duplicate = await db.query.users.findFirst({
+      where: eq(users.email, value),
+    });
+
     if (duplicate) {
       throw new ErrorDto("Email has used before.");
     }
@@ -80,7 +85,10 @@ export class ValidationService {
   }
 
   public static async throwIfDuplicateAlias(value: string): Promise<void> {
-    const duplicate = await prisma.link.findFirst({ where: { alias: value } });
+    const duplicate = await db.query.links.findFirst({
+      where: eq(links.alias, value),
+    });
+
     if (duplicate) {
       throw new ErrorDto("Alias has used before.");
     }

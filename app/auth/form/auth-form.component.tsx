@@ -2,8 +2,6 @@
 
 import { FormEvent, ReactElement, useContext, useState } from "react";
 
-import { User } from "@prisma/client";
-
 import { FaGithub } from "react-icons/fa";
 
 import { AnimationContext } from "@/app/context/animation.context";
@@ -26,6 +24,7 @@ import { useSnackbar } from "@/app/hooks/snackbar.hook";
 
 import formStyles from "@/app/styles/form.module.scss";
 import styles from "./auth-form.module.scss";
+import { User } from "@/db/schema";
 
 enum FormType {
   LOGIN = "Log In",

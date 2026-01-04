@@ -1,13 +1,14 @@
 import { redirect } from "next/navigation";
+import { db } from "@/db";
+import { eq } from "drizzle-orm";
+import { links } from "@/db/schema";
 
-import { prisma } from "@/app/lib/prisma";
-
-export async function GET(
-  _: Request,
-  { params }: RouteContext<"/[alias]">,
-): Promise<Response> {
+export async function GET(_: Request, { params }: any): Promise<Response> {
   const { alias } = await params;
-  const link = await prisma.link.findUnique({ where: { alias } });
+
+  const link = await db.query.links.findFirst({
+    where: eq(links.alias, alias),
+  });
 
   if (!link) {
     redirect("/");

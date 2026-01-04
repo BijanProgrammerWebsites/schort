@@ -4,8 +4,6 @@ import { ReactElement, useContext, useEffect, useState } from "react";
 
 import { useSession } from "next-auth/react";
 
-import { Link } from "@prisma/client";
-
 import Loading from "@/app/loading";
 
 import { AnimationContext } from "@/app/context/animation.context";
@@ -18,6 +16,7 @@ import GeneratorGuideComponent from "@/app/components/generator/components/guide
 import GeneratorListComponent from "@/app/components/generator/components/list/generator-list.component";
 
 import styles from "./generator.module.scss";
+import { Link } from "@/db/schema";
 
 export default function GeneratorComponent(): ReactElement {
   const { status: authStatus } = useSession();

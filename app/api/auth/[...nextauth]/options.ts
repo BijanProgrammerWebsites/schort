@@ -3,8 +3,9 @@ import GitHubProvider from "next-auth/providers/github";
 import CredentialProvider from "next-auth/providers/credentials";
 
 import bcrypt from "bcryptjs";
-
-import { prisma } from "@/app/lib/prisma";
+import { db } from "@/db";
+import { eq } from "drizzle-orm";
+import { users } from "@/db/schema";
 
 export const nextAuthOptions: NextAuthOptions = {
   pages: {
@@ -32,9 +33,10 @@ export const nextAuthOptions: NextAuthOptions = {
           return null;
         }
 
-        const user = await prisma.user.findUnique({
-          where: { email: credentials.email },
+        const user = await db.query.users.findFirst({
+          where: eq(users.email, credentials.email),
         });
+
         if (!user) {
           return null;
         }

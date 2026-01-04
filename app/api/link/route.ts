@@ -3,8 +3,6 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
 import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/options";
 
-import { Link, Prisma } from "@prisma/client";
-
 import crypto from "crypto";
 
 import { ErrorDto } from "@/app/dto/error.dto";
@@ -12,7 +10,10 @@ import { ErrorDto } from "@/app/dto/error.dto";
 import { RouteService } from "@/app/services/route.service";
 import { ValidationService } from "@/app/services/validation.service";
 
-import { prisma } from "@/app/lib/prisma";
+import { db } from "@/db";
+import { Link, links, users } from "@/db/schema";
+import { and, desc, eq, sql } from "drizzle-orm";
+import { QueryResult } from "pg";
 
 export async function GET(): Promise<NextResponse<Link[] | ErrorDto>> {
   return RouteService.handleError(async (): Promise<Link[] | ErrorDto> => {
@@ -21,9 +22,10 @@ export async function GET(): Promise<NextResponse<Link[] | ErrorDto>> {
       return [];
     }
 
-    return prisma.link.findMany({
-      where: { user: { email: session.user.email } },
-      orderBy: { updatedAt: "desc" },
+    return db.query.links.findMany({
+      with: { user: true },
+      where: eq(users.email, session.user.email),
+      orderBy: desc(links.updatedAt),
     });
   });
 }
@@ -43,15 +45,20 @@ export async function POST(
 
     const session = await getServerSession(nextAuthOptions);
     if (!session?.user?.email) {
-      return prisma.link.create({ data: { original, alias } });
+      return (await db.insert(links).values({ original, alias })).rows[0];
     }
-    return prisma.link.create({
-      data: {
+
+    const user = await db.query.users.findFirst({
+      where: eq(users.email, session.user.email),
+    });
+
+    return (
+      await db.insert(links).values({
         original,
         alias,
-        user: { connect: { email: session.user.email } },
-      },
-    });
+        userId: user?.id ?? null,
+      })
+    ).rows[0];
   });
 }
 
@@ -67,40 +74,38 @@ export async function PUT(
     const session = await getServerSession(nextAuthOptions);
     ValidationService.throwIfNotLoggedIn(session);
 
-    const link = await prisma.link.findUnique({
-      where: { id },
-      include: { user: true },
+    const link = await db.query.links.findFirst({
+      with: { user: true },
+      where: eq(links.id, id),
     });
 
     if (!link?.user || link.user.email !== session.user.email) {
       throw new ErrorDto("The link does not belong to the user.");
     }
 
-    return prisma.link.update({ where: { id: link.id }, data: { alias } });
+    return (await db.update(links).set({ alias }).where(eq(links.id, link.id)))
+      .rows[0];
   });
 }
 
 export async function DELETE(request: Request): Promise<Response> {
-  return RouteService.handleError(
-    async (): Promise<Prisma.BatchPayload | ErrorDto> => {
-      const { id } = await request.json();
-      ValidationService.throwIfInvalidLinkId(id);
+  return RouteService.handleError(async (): Promise<QueryResult | ErrorDto> => {
+    const { id } = await request.json();
+    ValidationService.throwIfInvalidLinkId(id);
 
-      const session = await getServerSession(nextAuthOptions);
-      ValidationService.throwIfNotLoggedIn(session);
+    const session = await getServerSession(nextAuthOptions);
+    ValidationService.throwIfNotLoggedIn(session);
 
-      return prisma.link.deleteMany({
-        where: {
-          AND: [
-            {
-              id,
-            },
-            {
-              user: { email: session.user.email },
-            },
-          ],
-        },
-      });
-    },
-  );
+    return db
+      .delete(links)
+      .where(
+        and(
+          eq(links.id, id),
+          eq(
+            links.userId,
+            sql`(SELECT id FROM users WHERE email = ${session.user.email})`,
+          ),
+        ),
+      );
+  });
 }
