@@ -22,9 +22,17 @@ export async function GET(): Promise<NextResponse<Link[] | ErrorDto>> {
       return [];
     }
 
+    const user = await db.query.users.findFirst({
+      where: eq(users.email, session.user.email),
+    });
+
+    if (!user) {
+      return [];
+    }
+
     return db.query.links.findMany({
       with: { user: true },
-      where: eq(users.email, session.user.email),
+      where: eq(links.userId, user.id),
       orderBy: desc(links.updatedAt),
     });
   });
@@ -45,20 +53,26 @@ export async function POST(
 
     const session = await getServerSession(nextAuthOptions);
     if (!session?.user?.email) {
-      return (await db.insert(links).values({ original, alias })).rows[0];
+      const [link] = await db
+        .insert(links)
+        .values({ original, alias })
+        .returning();
+      return link;
     }
 
     const user = await db.query.users.findFirst({
       where: eq(users.email, session.user.email),
     });
 
-    return (
-      await db.insert(links).values({
+    const [link] = await db
+      .insert(links)
+      .values({
         original,
         alias,
         userId: user?.id ?? null,
       })
-    ).rows[0];
+      .returning();
+    return link;
   });
 }
 
@@ -83,8 +97,12 @@ export async function PUT(
       throw new ErrorDto("The link does not belong to the user.");
     }
 
-    return (await db.update(links).set({ alias }).where(eq(links.id, link.id)))
-      .rows[0];
+    const [updated] = await db
+      .update(links)
+      .set({ alias })
+      .where(eq(links.id, link.id))
+      .returning();
+    return updated;
   });
 }
 
