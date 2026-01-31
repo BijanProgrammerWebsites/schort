@@ -6,7 +6,7 @@ on:
 
 jobs:
   deploy:
-    uses: BijanProgrammerWebsites/hub/.github/workflows/deploy-nextjs-with-prisma.yml@master
+    uses: BijanProgrammerWebsites/hub/.github/workflows/deploy-nextjs.yml@master
     with:
       process-name: schort
       port: 3002
