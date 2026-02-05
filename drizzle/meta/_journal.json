@@ -8,6 +8,13 @@
       "when": 1767557325053,
       "tag": "0000_absent_demogoblin",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1770287896621,
+      "tag": "0001_thin_mysterio",
+      "breakpoints": true
     }
   ]
 }

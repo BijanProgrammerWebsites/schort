@@ -37,7 +37,7 @@ export const nextAuthOptions: NextAuthOptions = {
           where: eq(users.email, credentials.email),
         });
 
-        if (!user) {
+        if (!user || !user.password) {
           return null;
         }
 
@@ -53,4 +53,29 @@ export const nextAuthOptions: NextAuthOptions = {
       },
     }),
   ],
+  events: {
+    async signIn({ user, account, profile, isNewUser }) {
+      if (account?.provider !== "github") {
+        return;
+      }
+
+      if (!user.email || !user.name) {
+        return;
+      }
+
+      await db
+        .insert(users)
+        .values({
+          email: user.email,
+          name: user.name,
+          password: null,
+        })
+        .onConflictDoUpdate({
+          target: users.email,
+          set: {
+            name: user.name,
+          },
+        });
+    },
+  },
 };
