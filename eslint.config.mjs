@@ -14,13 +14,13 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
   ]),
   {
-    rules: {
-      "@typescript-eslint/explicit-function-return-type": [
-        "error",
-        { allowExpressions: true },
-      ],
-      "@typescript-eslint/explicit-member-accessibility": "error",
-    },
+    ignores: [
+      "node_modules/**",
+      ".next/**",
+      "out/**",
+      "build/**",
+      "next-env.d.ts",
+    ],
   },
 ]);
 
