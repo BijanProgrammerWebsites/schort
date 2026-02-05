@@ -119,6 +119,7 @@ export default function HeroComponent(): ReactElement {
         <Image
           src={heroIllustration}
           alt="an illustration of a mobile phone that has a lot of messages, contacts and ratings floating around it"
+          loading="eager"
         />
       </PopAnimation>
     </section>
